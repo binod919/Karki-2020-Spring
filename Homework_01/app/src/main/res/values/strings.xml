@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Homework_01</string>
+    <string name="textview">TextView</string>
+    <string name="EmptyField"></string>
+    <string name="EnterText">Enter Text</string>
+    <string name="ConcatButton"> Concat Strings </string>
+    <string name="AddButton">Add Button</string>
 </resources>
