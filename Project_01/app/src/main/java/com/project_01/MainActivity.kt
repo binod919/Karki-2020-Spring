@@ -12,11 +12,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // when this button is clicked, new activity should launch
-        click_button.setOnClickListener {
+        play_button.setOnClickListener {
 
-            //set intent to launch second activity
-            val intent: Intent = Intent(this, SecondActivity::class.java)
-            startActivityForResult(intent, 10)                              //launch intent with request code
+            val name:String = name_text.text.toString()
+
+            if(name != null){
+
+                //set intent to launch second activity
+                val intent: Intent = Intent(this, SecondActivity::class.java)
+                startActivityForResult(intent, 10)                                       //launch intent with request code
+            }else {
+                // TODO: Set hint color to red
+            }
+
         }
 
     }
