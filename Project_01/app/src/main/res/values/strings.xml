@@ -6,4 +6,7 @@
     <string name="name">Enter Your Name </string>
     <string name = "welcome" > Hello! </string>
     <string name = "turn">Your Turn! </string>
+    <string name = "dash">--</string>
+    <string name="cross">X</string>
+    <string name = "circle">O</string>
 </resources>
