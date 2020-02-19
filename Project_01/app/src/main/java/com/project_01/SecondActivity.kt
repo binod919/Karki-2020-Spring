@@ -2,13 +2,13 @@ package com.project_01
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_second.*
 
 class SecondActivity : AppCompatActivity() {
-
 
     /**
      * 0 - open spot
@@ -40,7 +40,7 @@ class SecondActivity : AppCompatActivity() {
             btn_00.setText("X")
             btn_00.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -50,7 +50,7 @@ class SecondActivity : AppCompatActivity() {
             btn_01.setText("X")
             btn_01.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -60,7 +60,7 @@ class SecondActivity : AppCompatActivity() {
             btn_02.setText("X")
             btn_02.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -70,7 +70,7 @@ class SecondActivity : AppCompatActivity() {
             btn_10.setText("X")
             btn_10.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -80,7 +80,7 @@ class SecondActivity : AppCompatActivity() {
             btn_11.setText("X")
             btn_11.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -90,7 +90,7 @@ class SecondActivity : AppCompatActivity() {
             btn_12.setText("X")
             btn_12.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -100,7 +100,7 @@ class SecondActivity : AppCompatActivity() {
             btn_20.setText("X")
             btn_20.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -110,7 +110,7 @@ class SecondActivity : AppCompatActivity() {
             btn_21.setText("X")
             btn_21.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -120,7 +120,7 @@ class SecondActivity : AppCompatActivity() {
             btn_22.setText("X")
             btn_22.setEnabled(false)
 
-            //TODO: Game check
+            UserData.gameFinished = checkGameStatus()
 
             computerMove()      //Computer puts circle after player
         }
@@ -162,6 +162,73 @@ class SecondActivity : AppCompatActivity() {
 
     }
 
+
+    private fun checkGameStatus(): Boolean{
+        return checkRowWin() || checkColumnWin() || checkDiagonalWin()
+    }
+
+    /**
+     * check diagonals for win
+     */
+    private fun checkDiagonalWin(): Boolean {
+
+        if(check(arr[0][0], arr[1][1], arr[2][2])){
+
+            highlightButtons(getButton(0,0), getButton(1,1), getButton(2,2))
+            return true;
+
+        } else if(check(arr[0][2], arr[1][1], arr[2][0])){
+            highlightButtons(getButton(0,2), getButton(1,1), getButton(2,0))
+            return true
+            }else
+                return false
+    }
+
+    private fun highlightButtons(button: Button?, button1: Button?, button2: Button?) {
+
+        button!!.setBackgroundColor(Color.GREEN)
+        button1!!.setBackgroundColor(Color.GREEN)
+        button2!!.setBackgroundColor(Color.GREEN)
+
+    }
+
+    /**
+     * check in columns for win
+     */
+    private fun checkColumnWin(): Boolean {
+
+        for(i in 0..2){
+            if(check(arr[0][i],arr[1][i],arr[2][i])){
+                highlightButtons(getButton(0,i), getButton(1,i), getButton(2,i))
+                return true
+            }
+        }
+
+        return false
+    }
+
+    /**
+     * check rows for win
+     */
+    private fun checkRowWin(): Boolean {
+        for(i in 0..2){
+            if(check(arr[i][0],arr[i][1],arr[i][2])){
+                highlightButtons(getButton(i,0), getButton(i,1), getButton(i,2))
+                return true
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if three elements are equal
+     */
+    private fun check( a: Int, b:Int, c:Int): Boolean{
+        return (a != 0) && (a == b) && b == c
+    }
+
+
     /**
      * Computer marks an open location
      *
@@ -181,6 +248,7 @@ class SecondActivity : AppCompatActivity() {
                 val btn: Button? = getButton(i, j)
                 btn!!.setText("O")
                 btn!!.setEnabled(false)
+                UserData.gameFinished = checkGameStatus()
             }
         }
 
