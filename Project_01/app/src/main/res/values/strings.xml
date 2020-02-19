@@ -9,4 +9,6 @@
     <string name = "dash">--</string>
     <string name="cross">X</string>
     <string name = "circle">O</string>
+    <string name="restart">Restart</string>
+    <string name="quit">Quit</string>
 </resources>

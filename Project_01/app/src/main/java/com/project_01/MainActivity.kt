@@ -1,6 +1,7 @@
 package com.project_01
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,13 +17,18 @@ class MainActivity : AppCompatActivity() {
 
             val name:String = name_text.text.toString()
 
-            if(name != null){
+            if(name.isNotEmpty()){
 
                 //set intent to launch second activity
                 val intent: Intent = Intent(this, SecondActivity::class.java)
-                startActivityForResult(intent, 10)                                       //launch intent with request code
+                intent.putExtra("user", name)           // Pass username To second activity
+                startActivityForResult(intent, 10)   //launch intent with request code
+
             }else {
-                // TODO: Set hint color to red
+
+                name_text.setHint("Enter Your Name!!")
+                name_text.setHintTextColor(Color.RED)
+
             }
 
         }
