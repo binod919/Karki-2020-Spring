@@ -1,5 +1,6 @@
 package com.project_01
 
+import android.R.drawable.btn_default
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
@@ -22,6 +23,9 @@ class SecondActivity : AppCompatActivity() {
 
     var arr: Array<IntArray> = arrayOf(i, j, k)
 
+    var computerWon = false
+    var playerWon = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +33,7 @@ class SecondActivity : AppCompatActivity() {
 
         UserData.userName = intent.getStringExtra("user").toString()
 
-        title_txtView.setText(UserData.userName)
+        title_txtView.setText("Hello " + UserData.userName +"!")
 
 
         // computer goes first and waits for player
@@ -42,7 +46,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
         btn_01.setOnClickListener {
@@ -52,7 +56,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
         btn_02.setOnClickListener {
@@ -62,7 +66,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
         btn_10.setOnClickListener {
@@ -72,7 +76,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
         btn_11.setOnClickListener {
@@ -82,7 +86,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
         btn_12.setOnClickListener {
@@ -92,7 +96,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
         btn_20.setOnClickListener {
@@ -102,7 +106,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
         btn_21.setOnClickListener {
@@ -112,7 +116,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
         btn_22.setOnClickListener {
@@ -122,7 +126,7 @@ class SecondActivity : AppCompatActivity() {
 
             UserData.gameFinished = checkGameStatus()
 
-            computerMove()      //Computer puts circle after player
+            if(!UserData.gameFinished)computerMove()     //Computer puts circle after player
         }
 
 
@@ -140,6 +144,10 @@ class SecondActivity : AppCompatActivity() {
                     arr[i][j] = 0
                     btn!!.setText("--")
                     btn.setEnabled(true);
+                    btn.setBackgroundResource(btn_default)
+                    UserData.gameFinished = false
+                    computerWon = false
+                    playerWon = false
                 }
             }
 
@@ -153,9 +161,15 @@ class SecondActivity : AppCompatActivity() {
         quit_btn.setOnClickListener {
 
             if (UserData.gameFinished) {
+
+                var returnIntent: Intent = Intent()
+
+
                 setResult(Activity.RESULT_OK)
+                finish()
             } else {
                 setResult(Activity.RESULT_CANCELED)
+                finish()
             }
 
         }
@@ -225,7 +239,19 @@ class SecondActivity : AppCompatActivity() {
      * Check if three elements are equal
      */
     private fun check( a: Int, b:Int, c:Int): Boolean{
-        return (a != 0) && (a == b) && b == c
+        if((a != 0) && (a == b) && b == c ){
+            if(a == 1) {
+                UserData.lostCount++
+                computerWon = true
+            }
+            else if( a == 2) {
+                UserData.wonCount++
+                playerWon = true
+            }
+            return true
+        }
+
+        return false
     }
 
 
@@ -241,7 +267,7 @@ class SecondActivity : AppCompatActivity() {
             val i = (0 until 3).random()
             val j = (0 until 3).random()
 
-            if (arr[i][j] == 0) {
+            if (arr[i][j] == 0 ) {
                 updated = true
                 arr[i][j] = 1
 
@@ -249,6 +275,7 @@ class SecondActivity : AppCompatActivity() {
                 btn!!.setText("O")
                 btn!!.setEnabled(false)
                 UserData.gameFinished = checkGameStatus()
+                if(UserData.gameFinished) break
             }
         }
 
