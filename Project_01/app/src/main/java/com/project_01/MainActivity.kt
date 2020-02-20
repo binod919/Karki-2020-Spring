@@ -1,5 +1,7 @@
 package com.project_01
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -33,11 +35,40 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        exit_button.setOnClickListener {
+            finish()
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        
+        var msg: String = ""
+        if(data != null){
+            if(resultCode == Activity.RESULT_OK){
+
+                var computerWon:Boolean = data.getBooleanExtra("computerWon", false)
+                var playerWon:Boolean = data.getBooleanExtra("playerWon", false)
+
+                if(computerWon)
+                    msg = "Computer Win the game"
+                if(playerWon) msg= "You win the game"
+
+            }else if(resultCode == Activity.RESULT_CANCELED){
+                msg = "You quit in the middle"
+            }
+
+          val builder = AlertDialog.Builder(this)
+            builder.setTitle("")
+            builder.setMessage(msg)
+            builder.setPositiveButton("OK") { dialog, which ->
+
+            }
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+
+        }
     }
 }

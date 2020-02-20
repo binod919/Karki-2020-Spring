@@ -160,15 +160,16 @@ class SecondActivity : AppCompatActivity() {
          */
         quit_btn.setOnClickListener {
 
+            var returnIntent: Intent = Intent()
+            returnIntent.putExtra("comWon", computerWon)
+            returnIntent.putExtra("playerWon", playerWon)
+
             if (UserData.gameFinished) {
 
-                var returnIntent: Intent = Intent()
-
-
-                setResult(Activity.RESULT_OK)
+                setResult(Activity.RESULT_OK, returnIntent)
                 finish()
             } else {
-                setResult(Activity.RESULT_CANCELED)
+                setResult(Activity.RESULT_CANCELED, returnIntent)
                 finish()
             }
 
