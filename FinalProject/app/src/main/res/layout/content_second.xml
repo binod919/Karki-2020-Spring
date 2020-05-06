@@ -13,14 +13,14 @@
         android:id="@+id/txt_clock"
         android:layout_width="259dp"
         android:layout_height="0dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="87dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="87dp"
+        android:layout_marginBottom="41dp"
         android:format12Hour="hh:mm:ss a"
         android:textColor="#ffffff"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/time_picker"
+        app:layout_constraintBottom_toTopOf="@+id/tv_setTo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,23 +29,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="32dp"
         android:timePickerMode="spinner"
         app:layout_constraintBottom_toTopOf="@+id/btn_set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_clock" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_setTo" />
 
     <Button
         android:id="@+id/btn_set"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="114dp"
+        android:layout_marginBottom="113dp"
         android:text="@string/set"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_picker" />
+
+    <TextView
+        android:id="@+id/tv_setTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="78dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="59dp"
+        android:text="Alarm Set To"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/time_picker"
+        app:layout_constraintEnd_toStartOf="@+id/tv_alm_disp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_clock" />
+
+    <TextView
+        android:id="@+id/tv_alm_disp"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="85dp"
+        android:text="09:45 AM"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_setTo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_setTo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
