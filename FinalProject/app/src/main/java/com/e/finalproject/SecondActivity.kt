@@ -66,7 +66,7 @@ class SecondActivity : AppCompatActivity(), AboutFragment.OnFragmentInteractionL
 
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.container, aboutFragment)
+                .replace(R.id.frag_cont, aboutFragment)
                 .addToBackStack(aboutFragment.toString())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()

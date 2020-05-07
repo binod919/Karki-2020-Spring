@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sky"
+    android:id="@+id/frag_cont"
     tools:context=".fragments.AboutFragment">
 
     <TextView
         android:id="@+id/about_view"
         android:layout_width="302dp"
         android:layout_height="317dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="68dp"
         android:text="@string/aboutView"
         android:textAlignment="center"
         android:textColor="#ffffff"
