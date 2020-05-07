@@ -4,24 +4,28 @@ import android.app.Activity
 import android.content.Intent
 import android.media.Ringtone
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
+import com.e.finalproject.fragments.AboutFragment
 
-import kotlinx.android.synthetic.main.activity_second.*
 import kotlinx.android.synthetic.main.content_second.*
 import java.util.*
 import kotlin.concurrent.timerTask
 
-class SecondActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity(), AboutFragment.OnFragmentInteractionListener {
 
      var alarmSetTime: String? = null
+    lateinit var aboutFragment:AboutFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
         val timer: Timer = Timer();
+        aboutFragment = AboutFragment.newInstance()
 
         val ringtone: Ringtone = RingtoneManager.getRingtone(
             applicationContext,
@@ -53,9 +57,20 @@ class SecondActivity : AppCompatActivity() {
 
                 tv_setTo.text = "Alarm Set To: "
                 tv_alm_disp.text = alarmSetTime
-
         }
 
+
+        btn_about.setOnClickListener {
+
+
+
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container, aboutFragment)
+                .addToBackStack(aboutFragment.toString())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+        }
     }
 
     //overide back button for return intent
@@ -107,4 +122,7 @@ class SecondActivity : AppCompatActivity() {
         return alTime
     }
 
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

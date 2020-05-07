@@ -41,9 +41,9 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="113dp"
+        android:layout_marginBottom="29dp"
         android:text="@string/set"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_about"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_picker" />
@@ -68,7 +68,7 @@
         android:id="@+id/tv_alm_disp"
         android:layout_width="0dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="85dp"
+        android:layout_marginEnd="84dp"
         android:text="09:45 AM"
         android:textColor="#ffffff"
         android:textSize="18sp"
@@ -76,5 +76,17 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_setTo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_setTo" />
+
+    <Button
+        android:id="@+id/btn_about"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="36dp"
+        android:text="@string/about"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_set" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
